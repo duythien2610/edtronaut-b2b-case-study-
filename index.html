@@ -1,0 +1,1052 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edtronaut B2B Enterprise Suite — BA/PO Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#FFFFFF; --bg2:#F9FAFB; --bg3:#F3F4F6;
+      --ink:#111827; --ink2:#374151; --ink3:#6B7280; --ink4:#9CA3AF;
+      --border:#E5E7EB; --border2:#D1D5DB;
+      --blue:#2563EB; --blue-dk:#1D4ED8; --blue-bg:#EFF6FF; --blue-bd:#BFDBFE;
+      --green:#059669; --green-bg:#ECFDF5; --green-bd:#A7F3D0;
+      --amber:#D97706; --amber-bg:#FFFBEB;
+      --red:#DC2626;
+      --W:1280px; --H:720px; --hdr:50px; --ftr:30px; --px:40px; --py:22px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.5;color:var(--ink);background:#D1D5DB;-webkit-font-smoothing:antialiased;}
+
+    /* ── SLIDE ── */
+    .slide{width:var(--W);height:var(--H);background:var(--bg);margin:16px auto;display:none;flex-direction:column;overflow:hidden;}
+    .slide.active{display:flex;}
+
+    /* ── SLIDE HEADER ── */
+    .sh{height:var(--hdr);padding:0 var(--px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .sh img{height:30px;width:auto;}
+    .sh-tag{font-size:11px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bd);padding:4px 12px;border-radius:4px;}
+
+    /* ── SLIDE BODY ── */
+    .sb{flex:1;padding:var(--py) var(--px);display:flex;flex-direction:column;min-height:0;overflow:hidden;}
+
+    /* ── SLIDE FOOTER ── */
+    .sf{height:var(--ftr);padding:0 var(--px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .sf span{font-size:10px;color:var(--ink3);letter-spacing:0.02em;}
+
+    /* ── TYPOGRAPHY ── */
+    .title{font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;color:var(--ink);letter-spacing:-0.5px;line-height:1.2;margin-bottom:16px;}
+    .title em{color:var(--blue);font-style:normal;}
+    .lbl{font-size:12px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+    .lbl.blue{color:var(--blue);}
+
+    /* ── LAYOUT ── */
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+    .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+    .row{display:flex;flex-direction:row;align-items:center;}
+    .col{display:flex;flex-direction:column;}
+    .f1{flex:1;} .gap2{gap:10px;} .gap3{gap:14px;} .gap4{gap:18px;}
+    .mt2{margin-top:10px;} .mt3{margin-top:14px;} .mb2{margin-bottom:10px;}
+    .mh0{min-height:0;} .oh{overflow:hidden;}
+
+    /* ── CARDS ── */
+    .card{background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:14px 16px;}
+    .cw{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:14px 16px;}
+    .cblue{background:var(--blue-bg);border:1px solid var(--blue-bd);border-radius:7px;padding:13px 15px;}
+    .bt3-b{border-top:3px solid var(--blue);}
+    .bt3-g{border-top:3px solid var(--green);}
+    .bt3-a{border-top:3px solid var(--amber);}
+
+    /* ── TABLE ── */
+    table.t{width:100%;border-collapse:collapse;font-size:12.5px;}
+    table.t thead tr{background:var(--ink);}
+    table.t thead th{padding:10px 12px;text-align:left;color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;}
+    table.t tbody td{padding:9px 12px;color:var(--ink2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.45;}
+    table.t tbody tr:last-child td{border-bottom:none;}
+
+    /* ── BADGES ── */
+    .b{display:inline-flex;align-items:center;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;}
+    .bk{background:var(--ink);color:white;}
+    .bb{background:var(--blue-bg);color:var(--blue-dk);border:1px solid var(--blue-bd);}
+    .bg{background:var(--green-bg);color:var(--green);}
+    .bgr{background:var(--bg3);color:var(--ink3);border:1px solid var(--border);}
+
+    /* ── INFO BOXES ── */
+    .ib{border-left:3px solid;border-radius:0 6px 6px 0;padding:11px 15px;font-size:12.5px;line-height:1.6;}
+    .ib-b{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-dk);}
+    .ib-g{border-color:var(--green);background:var(--green-bg);color:var(--green);}
+    .ib-a{border-color:var(--amber);background:var(--amber-bg);color:var(--amber);}
+
+    /* ── GHERKIN ── */
+    .gh{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:11px 13px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.65;color:var(--ink2);}
+    .gh .k{color:var(--blue);font-weight:700;}
+
+    /* ── PROGRESS ── */
+    .pb{height:5px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .pbf{height:100%;border-radius:2px;background:var(--blue);}
+    .pbf.g{background:var(--green);}
+
+    /* ── KPI ── */
+    .kpi{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:14px 16px;border-left:3px solid var(--green);}
+    .kv{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:900;color:var(--green);}
+    .kl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;color:var(--ink3);}
+    .ks{font-size:10.5px;color:var(--ink3);margin-top:2px;}
+
+    /* ── RISK ── */
+    .rh{background:#FEE2E2;color:var(--red);padding:2px 7px;border-radius:4px;font-size:9px;font-weight:800;}
+    .rm{background:var(--amber-bg);color:var(--amber);padding:2px 7px;border-radius:4px;font-size:9px;font-weight:800;}
+    .rl{background:var(--green-bg);color:var(--green);padding:2px 7px;border-radius:4px;font-size:9px;font-weight:800;}
+
+    /* ── DIAGRAM FRAME ── */
+    .df{border:1px solid var(--border);border-radius:7px;overflow:hidden;background:white;display:flex;flex-direction:column;}
+    .df-h{padding:7px 12px;border-bottom:1px solid var(--border);background:var(--bg2);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;color:var(--ink3);}
+    .df img{width:100%;object-fit:contain;display:block;}
+
+    /* ── STEP PILLS ── */
+    .sp{display:inline-block;background:white;border:1px solid var(--border);border-radius:4px;padding:3px 8px;font-size:10px;font-weight:600;color:var(--ink2);}
+    .sp.b{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue-dk);}
+    .sp.g{background:var(--green-bg);border-color:var(--green-bd);color:var(--green);}
+    .arr{color:var(--border2);font-size:10px;margin:0 2px;}
+
+    /* ── BROWSER WIRE ── */
+    .bw{border:1px solid var(--border2);border-radius:7px;overflow:hidden;background:var(--bg2);}
+    .bw-bar{background:var(--bg3);padding:5px 9px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+    .bw-dots{display:flex;gap:4px;}
+    .bw-dots span{width:7px;height:7px;border-radius:50%;}
+    .bw-dots span:nth-child(1){background:#FC6058;}
+    .bw-dots span:nth-child(2){background:#FEC02F;}
+    .bw-dots span:nth-child(3){background:#2ACC42;}
+    .bw-url{flex:1;background:white;border:1px solid var(--border);border-radius:3px;padding:2px 8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);}
+    .bw-body{padding:12px;background:white;}
+
+    /* ── SCREEN NAV (hidden in print) ── */
+    #snav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(17,24,39,0.9);backdrop-filter:blur(8px);padding:6px 12px;border-radius:100px;z-index:100;}
+    #snav button{background:none;border:none;color:rgba(255,255,255,0.9);font-size:11px;font-weight:700;cursor:pointer;padding:4px 10px;border-radius:6px;font-family:'Inter',sans-serif;letter-spacing:0.3px;}
+    #snav button:hover:not(:disabled){background:rgba(255,255,255,0.1);}
+    #snav button:disabled{opacity:0.3;cursor:not-allowed;}
+    #snav .ctr{color:rgba(255,255,255,0.5);font-size:10px;font-family:'JetBrains Mono',monospace;min-width:55px;text-align:center;}
+    #snav .pr{background:var(--blue);border-radius:6px;padding:4px 10px;}
+
+    /* ══ PRINT ══ */
+    @page{size:1280px 720px;margin:0;}
+    @media print{
+      body{background:white;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+      #snav{display:none!important;}
+      .slide{display:flex!important;margin:0!important;page-break-after:always;break-after:page;width:var(--W)!important;height:var(--H)!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+      .slide:last-child{page-break-after:avoid;break-after:avoid;}
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SCREEN NAV -->
+<nav id="snav">
+  <button id="pb" disabled>← PREV</button>
+  <span class="ctr" id="ctr">01 / 15</span>
+  <button id="nb">NEXT →</button>
+  <button class="pr" onclick="window.print()">🖨 Print PDF</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 1 — COVER
+══════════════════════════════════════════════ -->
+<div class="slide active" id="s1">
+  <div class="sh">
+    <img src="assets/edtronaut_logo.jpg" alt="Edtronaut">
+    <span class="sh-tag">BA/PO Take-home Assignment · June 2026</span>
+  </div>
+  <div class="sb row f1 mh0" style="padding:0;flex-direction:row;align-items:stretch;">
+    <!-- Left -->
+    <div class="col" style="flex:1;padding:40px 44px;border-right:1px solid var(--border);justify-content:center;gap:16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--blue);">IT Business Analyst / Product Owner Intern</div>
+      <h1 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:42px;font-weight:900;color:var(--ink);letter-spacing:-1.5px;line-height:1.15;">Edtronaut <span style="color:var(--blue);">B2B</span><br>Enterprise Suite</h1>
+      <p style="font-size:16px;font-weight:600;color:var(--blue);">Recruitment, Onboarding &amp; Upskilling — Powered by S.O.R.A Simulation</p>
+      <p style="font-size:14px;color:var(--ink3);line-height:1.7;max-width:520px;">A strategic product proposal pivoting Edtronaut's B2C simulation engine into a high-impact enterprise workforce intelligence platform — addressing hiring, onboarding, and continuous upskilling for corporate clients.</p>
+      <div class="row gap2" style="flex-wrap:wrap;margin-top:8px;">
+        <span style="font-size:11px;font-weight:600;color:var(--ink2);background:var(--bg3);border:1px solid var(--border);padding:6px 13px;border-radius:6px;">6 Personas Mapped</span>
+        <span style="font-size:11px;font-weight:600;color:var(--ink2);background:var(--bg3);border:1px solid var(--border);padding:6px 13px;border-radius:6px;">3 BPMN Workflows</span>
+        <span style="font-size:11px;font-weight:600;color:var(--ink2);background:var(--bg3);border:1px solid var(--border);padding:6px 13px;border-radius:6px;">Engineering-Ready PRD/SRS</span>
+        <span style="font-size:11px;font-weight:600;color:var(--ink2);background:var(--bg3);border:1px solid var(--border);padding:6px 13px;border-radius:6px;">6-Week Roadmap</span>
+      </div>
+    </div>
+    <!-- Right -->
+    <div class="col" style="width:390px;flex-shrink:0;padding:36px 32px;background:var(--bg2);justify-content:center;gap:16px;">
+      <div class="row gap2" style="margin-bottom:4px;">
+        <img src="assets/duy_thien_do.jpg" alt="Duy Thien Do" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--blue-bd);">
+        <div><div style="font-weight:700;font-size:16px;color:var(--ink);">Duy Thien Do</div><div style="font-size:11px;color:var(--ink3);">BA / PO Intern Applicant</div></div>
+      </div>
+      <div class="cw" style="padding:14px 16px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">Submission Info</div>
+        <div style="font-size:12px;display:flex;flex-direction:column;gap:8px;">
+          <div class="row" style="justify-content:space-between;padding-bottom:6px;border-bottom:1px solid var(--border);"><span style="color:var(--ink3);">Role Applied</span><strong>BA / PO Intern</strong></div>
+          <div class="row" style="justify-content:space-between;padding-bottom:6px;border-bottom:1px solid var(--border);"><span style="color:var(--ink3);">Assignment</span><strong>Take-home v2.0</strong></div>
+          <div class="row" style="justify-content:space-between;padding-bottom:6px;border-bottom:1px solid var(--border);"><span style="color:var(--ink3);">Submission</span><strong>June 2026</strong></div>
+          <div class="row" style="justify-content:space-between;"><span style="color:var(--ink3);">Format</span><strong>Executive Deck · 15 Slides</strong></div>
+        </div>
+      </div>
+      <div class="cblue">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Strategic Thesis</div>
+        <p style="font-size:13px;font-weight:600;color:var(--ink);line-height:1.6;">"Beyond CV Screening — Hire, Onboard &amp; Grow talent through Demonstrated Skills, not just Resumes."</p>
+      </div>
+      <div class="card" style="padding:13px 15px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">Deck Coverage</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:11px;font-weight:600;color:var(--ink2);">
+          <div>✦ Part A: User Stories</div><div>✦ Part B: Workflows</div>
+          <div>✦ Part C: PRD + SRS</div><div>✦ Part D: Project Plan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 2 — PROBLEM STATEMENT
+══════════════════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Product Discovery</span></div>
+  <div class="sb">
+    <h2 class="title">Problem Statement &amp; <em>Strategic Opportunity</em></h2>
+    <div class="g2 f1 mh0" style="align-items:start;gap:20px;">
+      <div class="col gap3">
+        <div class="lbl blue">Identified Enterprise Pain Points</div>
+        <div class="cw col gap2" style="border-left:3px solid var(--blue);">
+          <div style="font-size:15px;font-weight:700;color:var(--ink);">CV–Reality Gap (Bad Hire Risk)</div>
+          <div style="font-size:13px;color:var(--ink3);line-height:1.5;">Recruiters spend 45 min/candidate with zero evidence of real-world skills. CV readability ≠ job performance. High bad-hire rate inflates recruitment costs significantly.</div>
+        </div>
+        <div class="cw col gap2" style="border-left:3px solid var(--blue);">
+          <div style="font-size:15px;font-weight:700;color:var(--ink);">Fragmented Recruitment Operations</div>
+          <div style="font-size:13px;color:var(--ink3);line-height:1.5;">Data scattered across spreadsheets, Google Forms, email threads. Zero single source of truth for cross-functional hiring decisions. Coordination overhead is extreme.</div>
+        </div>
+        <div class="cw col gap2" style="border-left:3px solid var(--blue);">
+          <div style="font-size:15px;font-weight:700;color:var(--ink);">Invisible Skill Gaps Post-Hire</div>
+          <div style="font-size:13px;color:var(--ink3);line-height:1.5;">New hires overwhelmed by unstructured onboarding. L&amp;D managers lack real-time skill matrices to plan training ROI. Promotion paths remain vague and unmeasured.</div>
+        </div>
+      </div>
+      <div class="col gap3">
+        <div class="lbl blue">Edtronaut B2B Solution Architecture</div>
+        <div class="card" style="padding:14px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--ink3);margin-bottom:10px;">Platform Evolution</div>
+          <div class="row gap2">
+            <div style="flex:1;background:white;border:1px solid var(--border);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:700;">Stage 1</div><div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px;">B2C Learner<br>Platform</div></div>
+            <div style="color:var(--border2);font-size:16px;">→</div>
+            <div style="flex:1;background:var(--blue);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:10px;color:rgba(255,255,255,0.9);text-transform:uppercase;font-weight:700;">Core IP</div><div style="font-size:13px;font-weight:700;color:white;margin-top:2px;">S.O.R.A<br>Sim Engine</div></div>
+            <div style="color:var(--border2);font-size:16px;">→</div>
+            <div style="flex:1;background:white;border:1px solid var(--blue-bd);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:10px;color:var(--blue);text-transform:uppercase;font-weight:700;">Target</div><div style="font-size:13px;font-weight:700;color:var(--ink);margin-top:2px;">Enterprise<br>B2B SaaS</div></div>
+          </div>
+        </div>
+        <div class="g3 gap2">
+          <div class="card bt3-b" style="padding:12px 14px;"><div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;">① Hiring Automation</div><div style="font-size:12px;color:var(--ink3);line-height:1.45;">Sim-scored ranking replaces manual CV review</div></div>
+          <div class="card bt3-b" style="padding:12px 14px;"><div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;">② Guided Onboarding</div><div style="font-size:12px;color:var(--ink3);line-height:1.45;">Structured sims reduce time-to-productivity by 30%</div></div>
+          <div class="card bt3-b" style="padding:12px 14px;"><div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;">③ Continuous Upskilling</div><div style="font-size:12px;color:var(--ink3);line-height:1.45;">Real-time skill matrix triggers promotion signals</div></div>
+        </div>
+        <div class="ib ib-b">
+          <strong>Core Value Proposition:</strong> Move from CV-based intuition → Evidence-based workforce decisions powered by S.O.R.A simulation data — measurable, objective, defensible.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 3 — PERSONA MATRIX
+══════════════════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part A · User Research</span></div>
+  <div class="sb">
+    <h2 class="title">Ecosystem Persona Matrix — <em>6 Target Actors</em></h2>
+    <div class="f1 mh0 oh" style="border:1px solid var(--border);border-radius:7px;">
+      <table class="t">
+        <thead><tr><th style="width:70px;">Suite</th><th style="width:150px;">Persona &amp; Role</th><th>Top Pain Points</th><th>Key Objections</th><th style="width:170px;">Success Metric</th></tr></thead>
+        <tbody>
+          <tr>
+            <td rowspan="2" style="background:var(--bg3);font-weight:800;color:var(--ink2);font-size:11px;text-transform:uppercase;text-align:center;border-right:1px solid var(--border);">Hiring</td>
+            <td><strong style="font-size:12.5px;">TA Recruiter</strong><br><span style="color:var(--ink3);font-size:10.5px;">Le Minh Tri, 32</span></td>
+            <td style="font-size:12.5px;">CV noise filtering; time-to-hire KPI; poor candidate experience at scale</td>
+            <td style="font-size:12.5px;">AI bias concerns; PII security on 3rd-party systems</td>
+            <td><span class="b bg">Time-to-shortlist ≥ −50%</span></td>
+          </tr>
+          <tr>
+            <td><strong style="font-size:12.5px;">Candidate</strong><br><span style="color:var(--ink3);font-size:10.5px;">Nguyen Thao Vy, 22</span></td>
+            <td style="font-size:12.5px;">Dry tests; AI scoring anxiety; no feedback post-submission</td>
+            <td style="font-size:12.5px;">Test duration; fear of IP being used without credit</td>
+            <td><span class="b bg">Sim completion ≥ 85%</span></td>
+          </tr>
+          <tr>
+            <td rowspan="2" style="background:var(--bg3);font-weight:800;color:var(--ink2);font-size:11px;text-transform:uppercase;text-align:center;border-right:1px solid var(--border);">Onboarding</td>
+            <td><strong style="font-size:12.5px;">New Hire</strong><br><span style="color:var(--ink3);font-size:10.5px;">Pham Hoang Nam, 24</span></td>
+            <td style="font-size:12.5px;">Document overload; fear of basic questions; vague probation tracking</td>
+            <td style="font-size:12.5px;">Sim feels high-stakes; complex tool UX</td>
+            <td><span class="b bg">Ramp-up speed +30%</span></td>
+          </tr>
+          <tr>
+            <td><strong style="font-size:12.5px;">People Ops / HR</strong><br><span style="color:var(--ink3);font-size:10.5px;">Do Thanh Hai, 29</span></td>
+            <td style="font-size:12.5px;">Tracking on Google Sheets; managers skip reviews; outdated materials</td>
+            <td style="font-size:12.5px;">Team change resistance; per-dept customisation complexity</td>
+            <td><span class="b bg">Zero coordination errors</span></td>
+          </tr>
+          <tr>
+            <td rowspan="2" style="background:var(--bg3);font-weight:800;color:var(--ink2);font-size:11px;text-transform:uppercase;text-align:center;border-right:1px solid var(--border);">Upskilling</td>
+            <td><strong style="font-size:12.5px;">L&amp;D Manager / HRBP</strong><br><span style="color:var(--ink3);font-size:10.5px;">Tran Duc Manh, 38</span></td>
+            <td style="font-size:12.5px;">Gut-feel assessments; low training ROI; no org-wide Skill Matrix</td>
+            <td style="font-size:12.5px;">Low completion rates; AI recommends wrong skill priorities</td>
+            <td><span class="b bg">Promotion signals 100% auto</span></td>
+          </tr>
+          <tr>
+            <td><strong style="font-size:12.5px;">Employee / Learner</strong><br><span style="color:var(--ink3);font-size:10.5px;">Bui Anh Tuan, 27</span></td>
+            <td style="font-size:12.5px;">Learning disconnected from doing; unaware of skill gaps; vague promotion criteria</td>
+            <td style="font-size:12.5px;">Low scores impact KPI; burnout from workload</td>
+            <td><span class="b bg">Personalised path active</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ib ib-b mt2" style="font-size:11px;"><strong>MVP Focus:</strong> Persona 1 (TA Recruiter) and Persona 2 (Candidate) are primary MVP users. Persona 5 (L&amp;D Manager) is secondary for Phase 1b validation.</div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 4 — USER STORIES: RECRUITER
+══════════════════════════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part A · Backlog — Recruiter Stories</span></div>
+  <div class="sb">
+    <h2 class="title">User Stories — <em>TA Recruiter</em> (INVEST Standard)</h2>
+    <div class="g3 f1 mh0" style="align-items:stretch;">
+      <div class="col gap2" style="height:100%;">
+        <div class="row" style="justify-content:space-between;"><span style="font-size:11px;font-weight:700;color:var(--blue);">US-HIR-001 (P0 · Must)</span></div>
+        <div style="font-size:14px;font-weight:700;color:var(--ink);">Filter &amp; Rank by AI Score</div>
+        <div class="card" style="font-size:12px;line-height:1.6;padding:11px 13px;"><strong>As a</strong> TA Recruiter,<br><strong>I want to</strong> filter by Simulation score and AI Rank (A/B/C),<br><strong>So that</strong> I can instantly surface top talent for scheduling.</div>
+        <div class="gh f1" style="font-size:12px;">
+          <span class="k">Given</span> Recruiter on Candidate Pipeline<br>
+          <span class="k">And</span> job "BA Intern" list visible<br>
+          <span class="k">When</span> selects score range &amp; applies<br>
+          <span class="k">Then</span> table shows matching candidates only<br>
+          <span class="k">And</span> counter updates with filtered count
+        </div>
+        <div class="ib ib-b" style="font-size:11px;padding:8px 12px;"><strong>Phase 2:</strong> Multi-skill filter combinations</div>
+      </div>
+      <div class="col gap2" style="height:100%;">
+        <div class="row" style="justify-content:space-between;"><span style="font-size:11px;font-weight:700;color:var(--blue);">US-HIR-002 (P0 · Must)</span></div>
+        <div style="font-size:14px;font-weight:700;color:var(--ink);">Configure Pipeline Flow Selection</div>
+        <div class="card" style="font-size:12px;line-height:1.6;padding:11px 13px;"><strong>As a</strong> TA Recruiter,<br><strong>I want to</strong> swap Simulation and Interview order per Job,<br><strong>So that</strong> I optimise pipeline for Junior vs Senior roles.</div>
+        <div class="gh f1" style="font-size:12px;">
+          <span class="k">Given</span> Recruiter on Job "Senior BA" config<br>
+          <span class="k">When</span> selects "Interview First" &amp; saves<br>
+          <span class="k">Then</span> system confirms update<br>
+          <span class="k">And</span> new applicants follow updated flow<br>
+          <span class="k">And</span> correct CTA shown per mode
+        </div>
+        <div class="ib ib-b" style="font-size:11px;padding:8px 12px;"><strong>Phase 2:</strong> Drag-and-drop workflow builder</div>
+      </div>
+      <div class="col gap2" style="height:100%;">
+        <div class="row" style="justify-content:space-between;"><span style="font-size:11px;font-weight:700;color:var(--blue);">US-HIR-003 (P1 · Should)</span></div>
+        <div style="font-size:14px;font-weight:700;color:var(--ink);">Bulk Send Simulation Invitations</div>
+        <div class="card" style="font-size:12px;line-height:1.6;padding:11px 13px;"><strong>As a</strong> TA Recruiter,<br><strong>I want to</strong> bulk-select and send Simulation invites at once,<br><strong>So that</strong> I eliminate repetitive per-candidate email work.</div>
+        <div class="gh f1" style="font-size:12px;">
+          <span class="k">Given</span> Recruiter viewing "Applied" stage<br>
+          <span class="k">And</span> ≥ 1 candidates selected via checkbox<br>
+          <span class="k">When</span> clicks "Bulk Send" &amp; sets deadline<br>
+          <span class="k">Then</span> system sends personalised token links<br>
+          <span class="k">And</span> all selected status → "Sim Sent"
+        </div>
+        <div class="ib ib-b" style="font-size:11px;padding:8px 12px;"><strong>Phase 2:</strong> Custom email template editor</div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 5 — USER STORIES: CANDIDATE + MANAGER
+══════════════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part A · Backlog — Candidate &amp; Manager Stories</span></div>
+  <div class="sb">
+    <h2 class="title">User Stories — <em>Candidate Portal &amp; Hiring Manager</em></h2>
+    <div class="g2 f1 mh0" style="align-items:start;gap:20px;">
+      <div class="col gap2">
+        <div class="lbl blue">Candidate Portal Stories</div>
+        <div class="cw col gap2" style="border-left:3px solid var(--blue);padding:11px 13px;">
+          <div class="row" style="justify-content:space-between;"><span class="mono" style="font-size:10px;font-weight:700;color:var(--blue);">US-HIR-004 &amp; 005 (P0 · Must)</span></div>
+          <div style="font-size:12px;font-weight:700;color:var(--ink);">View Brief → Submit Assessment</div>
+          <div class="gh" style="font-size:10px;"><span class="k">Given</span> Candidate clicks unique token link<br><span class="k">When</span> landing page loads<br><span class="k">Then</span> shows: Job title, deadline, duration, rules<br><span class="k">When</span> completes all tasks &amp; submits<br><span class="k">Then</span> status → "Sim Completed"; edit locked permanently</div>
+        </div>
+        <div class="cw col gap2" style="border-left:3px solid var(--blue);padding:11px 13px;">
+          <div class="row" style="justify-content:space-between;"><span class="mono" style="font-size:10px;font-weight:700;color:var(--blue);">US-HIR-006 (P1 · Should)</span></div>
+          <div style="font-size:12px;font-weight:700;color:var(--ink);">Receive AI Skill Feedback Report</div>
+          <div class="gh" style="font-size:10px;"><span class="k">Given</span> AI scoring is completed<br><span class="k">When</span> status → "Simulation Evaluated"<br><span class="k">Then</span> AI auto-emails PDF Skill Report with 3 dimension scores + narrative<br><span class="k">And</span> answer keys are NOT revealed in report</div>
+        </div>
+      </div>
+      <div class="col gap2">
+        <div class="lbl blue">Hiring Manager Review Stories</div>
+        <div class="cw col gap2" style="border-left:3px solid var(--blue);padding:11px 13px;">
+          <div class="row" style="justify-content:space-between;"><span class="mono" style="font-size:10px;font-weight:700;color:var(--blue);">US-HIR-007 (P0 · Must)</span></div>
+          <div style="font-size:12px;font-weight:700;color:var(--ink);">View Department Shortlist (Read-Only)</div>
+          <div class="gh" style="font-size:10px;"><span class="k">Given</span> Hiring Manager authenticated<br><span class="k">When</span> pipeline loads<br><span class="k">Then</span> shows ONLY own department candidates with status ≥ "Sim Completed"<br><span class="k">And</span> other departments' data hidden (RBAC enforced)</div>
+        </div>
+        <div class="cw col gap2" style="border-left:3px solid var(--blue);padding:11px 13px;">
+          <div class="row" style="justify-content:space-between;"><span class="mono" style="font-size:10px;font-weight:700;color:var(--blue);">US-HIR-008 &amp; 009 (P0 · Must)</span></div>
+          <div style="font-size:12px;font-weight:700;color:var(--ink);">Add Reviewer Notes → Approve / Reject</div>
+          <div class="gh" style="font-size:10px;"><span class="k">Given</span> Manager on candidate detail page<br><span class="k">When</span> types reviewer note &amp; saves<br><span class="k">Then</span> note logged with author + timestamp in Activity Timeline<br><span class="k">When</span> clicks "Approve to Interview"<br><span class="k">Then</span> status → "Interview Scheduled" + Recruiter notified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 6 — WORKFLOW 1: HIRING AUTOMATION BPMN
+══════════════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part B · Workflow 1 — Hiring Automation BPMN</span></div>
+  <div class="sb col gap3">
+    <h2 class="title" style="margin-bottom:8px;">Hiring Automation — <em>BPMN 2.0 Swimlane</em></h2>
+    <div class="row gap4 f1 mh0">
+      <!-- Context (shrunk to 200px to maximize diagram) -->
+      <div class="col gap3" style="width:200px;flex-shrink:0;">
+        <div class="lbl">Flow Manager — Core Feature</div>
+        <div class="card" style="padding:10px;">
+          <div style="font-size:10px;font-weight:700;color:var(--ink);margin-bottom:6px;">Pipeline Mode Selection</div>
+          <div style="background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:6px;padding:7px 9px;margin-bottom:4px;">
+            <div style="font-size:10px;font-weight:700;color:var(--blue);">Simulation First</div>
+            <div style="font-size:9px;color:var(--blue);">AI filters before interview</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:7px 9px;">
+            <div style="font-size:10px;font-weight:600;color:var(--ink4);">Interview First</div>
+            <div style="font-size:9px;color:var(--ink4);">Human screens before AI</div>
+          </div>
+        </div>
+        <div class="lbl">Key Edge Cases</div>
+        <div class="col gap2" style="font-size:10px;color:var(--ink2);">
+          <div class="card" style="padding:7px 9px;line-height:1.4;"><strong>Unopened:</strong> Reminder 48h, expires 72h</div>
+          <div class="card" style="padding:7px 9px;line-height:1.4;"><strong>Offline:</strong> LocalStorage cache + auto-resume</div>
+          <div class="card" style="padding:7px 9px;line-height:1.4;"><strong>Rejected:</strong> Auto-email + skill gap PDF</div>
+        </div>
+      </div>
+      <!-- Diagram (maximized) -->
+      <div class="df f1 mh0">
+        <div class="df-h">Figure B.1 — Hiring Automation BPMN 2.0 Swimlane Diagram</div>
+        <img src="assets/Hiring.png" alt="Hiring Automation BPMN" style="flex:1;height:calc(100% - 28px);object-fit:contain;object-position:center;width:100%;">
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 7 — WORKFLOWS 1.1 + 1.2
+══════════════════════════════════════════════ -->
+<div class="slide" id="s7">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part B · Workflows 1.1 &amp; 1.2 — Sub-Processes</span></div>
+  <div class="sb">
+    <h2 class="title" style="margin-bottom:8px;">Sub-Process Logic — <em>Assessment Loop &amp; Offer Flow</em></h2>
+    <div class="g2 f1 mh0" style="gap:14px;">
+      <div class="col gap2 mh0">
+        <div class="row" style="justify-content:space-between;margin-bottom:2px;">
+          <div style="font-size:12px;font-weight:700;color:var(--ink);">Workflow 1.1 — Assessment Loop</div>
+          <span class="b bb">Sub-process</span>
+        </div>
+        <div style="font-size:10.5px;color:var(--ink3);line-height:1.4;margin-bottom:4px;">
+          <strong>Edge Cases:</strong> Expire at 72h (reminder 48h) · Offline cache (LocalStorage) · Idempotency check.
+        </div>
+        <div class="df f1 mh0">
+          <div class="df-h">Figure B.1.1 — Assessment Flow BPMN</div>
+          <img src="assets/New BPMN diagram.png" alt="Assessment Flow Sub-Process" style="flex:1;height:calc(100% - 28px);object-fit:contain;object-position:center;width:100%;">
+        </div>
+      </div>
+      <div class="col gap2 mh0">
+        <div class="row" style="justify-content:space-between;margin-bottom:2px;">
+          <div style="font-size:12px;font-weight:700;color:var(--ink);">Workflow 1.2 — Interview &amp; Offer</div>
+          <span class="b bg">Sub-process</span>
+        </div>
+        <div style="font-size:10.5px;color:var(--ink3);line-height:1.4;margin-bottom:4px;">
+          <strong>Edge Cases:</strong> Rejections log reason · Decline triggers next-best candidate · Feedback report sent.
+        </div>
+        <div class="df f1 mh0">
+          <div class="df-h">Figure B.1.2 — Interview &amp; Offer Flow BPMN</div>
+          <img src="assets/Sub process 2.png" alt="Interview Offer Flow" style="flex:1;height:calc(100% - 28px);object-fit:contain;object-position:center;width:100%;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 8 — WORKFLOW 2: ONBOARDING
+══════════════════════════════════════════════ -->
+<div class="slide" id="s8">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part B · Workflow 2 — New Hire Onboarding</span></div>
+  <div class="sb col gap3">
+    <h2 class="title" style="margin-bottom:8px;">New Hire Onboarding — <em>Closed-Loop Feedback Swimlane</em></h2>
+    <div class="row gap4 f1 mh0">
+      <div class="col gap3" style="width:270px;flex-shrink:0;">
+        <div class="lbl">Process Design Insight</div>
+        <div class="ib ib-b" style="font-size:11px;line-height:1.55;"><strong>Closed-Loop Architecture:</strong> When Line Manager marks evidence as "Fail", the system triggers feedback and automatically cycles the New Hire back to revision. Loop continues until evidence meets benchmark — no substandard output passes through.</div>
+        <div class="lbl">4 Process Actors</div>
+        <div class="col gap2" style="font-size:11px;">
+          <div class="card" style="padding:7px 10px;"><span style="color:var(--blue);font-weight:700;">HR Ops</span> — Configure &amp; initiate onboarding flow</div>
+          <div class="card" style="padding:7px 10px;"><span style="color:var(--ink);font-weight:700;">System</span> — Auto-notify, track &amp; certify to HRIS</div>
+          <div class="card" style="padding:7px 10px;"><span style="color:var(--green);font-weight:700;">New Hire</span> — Do Sim, submit evidence, revise on feedback</div>
+          <div class="card" style="padding:7px 10px;"><span style="color:var(--amber);font-weight:700;">Line Manager</span> — Review evidence, Pass/Fail with notes</div>
+        </div>
+      </div>
+      <div class="df f1 mh0">
+        <div class="df-h">Figure B.2 — New Hire Onboarding Cross-Functional Swimlane Flowchart</div>
+        <img src="assets/Figure B.2 New Hire Onboarding Cross-Functional Swimlane Flowchart.png" alt="Onboarding Swimlane" style="flex:1;height:calc(100% - 28px);object-fit:contain;object-position:center;">
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 9 — WORKFLOW 3: UPSKILLING
+══════════════════════════════════════════════ -->
+<div class="slide" id="s9">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part B · Workflow 3 — Upskilling Continuous Loop</span></div>
+  <div class="sb col gap3">
+    <h2 class="title" style="margin-bottom:8px;">Upskilling — <em>Continuous Learning Closed-Loop</em></h2>
+    <div class="row gap4 f1 mh0">
+      <div class="col gap3" style="width:270px;flex-shrink:0;">
+        <div class="lbl">Design Philosophy</div>
+        <div class="ib ib-b" style="font-size:11px;line-height:1.55;"><strong>Perpetual Growth Engine:</strong> The loop never terminates. When promoted, the system reloads the next competency framework at a higher benchmark — creating an evidence-based, automated career progression ladder.</div>
+        <div class="lbl">Loop Logic</div>
+        <div class="col gap2" style="font-size:11px;">
+          <div class="card" style="padding:7px 10px;"><strong>L&amp;D Manager</strong> → Define benchmark competency framework</div>
+          <div class="card" style="padding:7px 10px;"><strong>AI Engine</strong> → Detect gap, assign sim, score, check benchmark</div>
+          <div class="card" style="padding:7px 10px;"><strong>Employee</strong> → Complete upskill simulation, submit result</div>
+          <div class="card" style="padding:7px 10px;"><strong>Pass:</strong> Skill Matrix updated → Promotion Signal triggered</div>
+          <div class="card" style="padding:7px 10px;"><strong>Fail:</strong> Remediation sim assigned → Loop restarts</div>
+        </div>
+      </div>
+      <div class="df f1 mh0">
+        <div class="df-h">Figure B.3 — Upskilling Closed-Loop Swimlane Flowchart</div>
+        <img src="assets/Figure B.3 UpskillingClosed-Loop Swimlane Flowchart.png" alt="Upskilling Closed-Loop" style="flex:1;height:calc(100% - 28px);object-fit:contain;object-position:center;">
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 10 — PRD MVP SCOPE
+══════════════════════════════════════════════ -->
+<div class="slide" id="s10">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part C · PRD — MVP Feature Scoping</span></div>
+  <div class="sb">
+    <h2 class="title">MVP Scope vs. Phase 2 Roadmap — <em>Feature Prioritisation</em></h2>
+    <div class="row gap4 f1 mh0" style="align-items:stretch;">
+      <div class="f1 mh0 oh" style="border:1px solid var(--border);border-radius:7px;">
+        <table class="t">
+          <thead><tr><th style="width:110px;">Module</th><th style="background:var(--ink2);">✅ MVP Phase 1.0 — Must Have</th><th style="background:var(--ink3);">⏳ Phase 2+ Roadmap</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:700;">Candidate List</td><td style="background:var(--green-bg);">Table: Score, AI Rank, Stage, Last Update. Pagination 20/page. Search by name/email/phone.</td><td style="color:var(--ink3);">Real-time ATS sync via Webhooks (Workable, Greenhouse)</td></tr>
+            <tr><td style="font-weight:700;">Flow Config</td><td style="background:var(--green-bg);">Binary selection: Sim-First vs. Interview-First per Job opening</td><td style="color:var(--ink3);">Drag-and-drop multi-step workflow builder</td></tr>
+            <tr><td style="font-weight:700;">Bulk Actions</td><td style="background:var(--green-bg);">Bulk Send Simulation (≤50 candidates), Bulk Stage Change, CSV Export</td><td style="color:var(--ink3);">Custom email template editor; scheduled golden-hour send</td></tr>
+            <tr><td style="font-weight:700;">AI Assessment</td><td style="background:var(--green-bg);">SORA aggregate score, AI Narrative Summary (Accuracy, Soft Skills, Time)</td><td style="color:var(--ink3);">Spider chart comparison vs. hired cohort benchmarks</td></tr>
+            <tr><td style="font-weight:700;">Exports</td><td style="background:var(--green-bg);">Manual CSV flat export of filtered shortlist</td><td style="color:var(--ink3);">Rich PDF analytical report with full evidence for board presentation</td></tr>
+            <tr><td style="font-weight:700;">Security</td><td style="background:var(--green-bg);">Credential login, RBAC, AES-256 PII encryption at rest, immutable Audit Logs</td><td style="color:var(--ink3);">SAML SSO, Google/Outlook calendar sync, MFA enforcement</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col gap2" style="width:270px;flex-shrink:0;">
+        <div class="lbl">MoSCoW Prioritisation</div>
+        <div class="card bt3-b" style="padding:13px 15px;">
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--blue);margin-bottom:7px;">P0 · Must Have</div>
+          <div style="font-size:12.5px;color:var(--ink2);line-height:1.6;">Candidate List, AI Score, Detail View, Flow Toggle, RBAC</div>
+        </div>
+        <div class="card" style="padding:13px 15px;">
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink3);margin-bottom:7px;">P1 · Should Have</div>
+          <div style="font-size:12.5px;color:var(--ink2);line-height:1.6;">Bulk Invite (≤50), CSV Export, Reviewer Notes, Timeline</div>
+        </div>
+        <div class="card" style="padding:13px 15px;border-color:var(--border2);">
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink4);margin-bottom:7px;">P2 · Could Have</div>
+          <div style="font-size:12.5px;color:var(--ink3);line-height:1.6;">SAML SSO, Calendar Sync, Custom Email Templates</div>
+        </div>
+        <div class="card" style="padding:13px 15px;border:1px dashed var(--border2);">
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink4);margin-bottom:7px;">Won't Have (MVP)</div>
+          <div style="font-size:12.5px;color:var(--ink3);line-height:1.6;">Auto-ATS sync, Drag-drop builder, PDF report generation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 11 — FR + RBAC + NFR
+══════════════════════════════════════════════ -->
+<div class="slide" id="s11">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part C · SRS — System Requirements</span></div>
+  <div class="sb">
+    <h2 class="title" style="margin-bottom:10px;">Functional Requirements &amp; <em>Access Control Matrix</em></h2>
+    <div class="g2 f1 mh0" style="align-items:stretch;gap:20px;">
+      <div class="col gap2 mh0">
+        <div class="lbl blue">Functional Requirements (RFC 2119)</div>
+        <div style="border:1px solid var(--border);border-radius:7px;" class="oh">
+          <table class="t" style="font-size:11.5px;">
+            <thead><tr><th style="width:90px;">Req ID</th><th>Requirement — System MUST</th><th style="width:65px;text-align:center;">Priority</th></tr></thead>
+            <tbody>
+              <tr><td style="font-weight:700;color:var(--blue);font-size:10px;">FR-DASH-001</td><td>Display Recruitment Funnel: Applied → Sim Sent → Sim Done → Interview → Offered → Hired</td><td style="text-align:center;color:var(--ink3);font-weight:700;">Must</td></tr>
+              <tr><td style="font-weight:700;color:var(--blue);font-size:10px;">FR-DASH-002</td><td>Show "Action Required" banner for candidates pending review &gt;48h</td><td style="text-align:center;color:var(--ink3);font-weight:700;">Must</td></tr>
+              <tr><td style="font-weight:700;color:var(--blue);font-size:10px;">FR-LIST-001</td><td>Pagination (20/page), search by Name / Email / Phone</td><td style="text-align:center;color:var(--ink3);font-weight:700;">Must</td></tr>
+              <tr><td style="font-weight:700;color:var(--blue);font-size:10px;">FR-LIST-002</td><td>Filter by: Job, Score Range (slider), AI Rank (A/B/C), Stage status</td><td style="text-align:center;color:var(--ink3);font-weight:700;">Must</td></tr>
+              <tr><td style="font-weight:700;color:var(--blue);font-size:10px;">FR-DETAIL-001</td><td>Candidate detail: 3 tabs — CV Profile · Sim Report · Activity Log</td><td style="text-align:center;color:var(--ink3);font-weight:700;">Must</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lbl mt2">RBAC Access Control Matrix</div>
+        <div style="border:1px solid var(--border);border-radius:7px;" class="oh">
+          <table class="t" style="font-size:11.5px;">
+            <thead><tr><th>Feature</th><th style="text-align:center;">TA Recruiter</th><th style="text-align:center;">Hiring Manager</th><th style="text-align:center;">Admin</th></tr></thead>
+            <tbody>
+              <tr><td>Configure Flow Manager</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td><td style="text-align:center;color:var(--red);font-weight:700;">✗ None</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td></tr>
+              <tr><td>Bulk Send Simulation</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td><td style="text-align:center;color:var(--red);font-weight:700;">✗ None</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td></tr>
+              <tr><td>View Candidate Lists</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ All Jobs</td><td style="text-align:center;color:var(--blue);font-weight:700;">👁 Own Dept</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td></tr>
+              <tr><td>Add Reviewer Notes</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td></tr>
+              <tr><td>Export CSV</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td><td style="text-align:center;color:var(--red);font-weight:700;">✗ None</td><td style="text-align:center;color:var(--green);font-weight:700;">✓ Full</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col gap2">
+        <div class="lbl">Non-Functional Requirements</div>
+        <div class="col gap2" style="font-size:12px;">
+          <div class="card" style="padding:11px 13px;"><div style="font-weight:700;color:var(--ink);margin-bottom:4px;"><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;">NFR-PERF-001</span> · Page Load</div><div style="color:var(--ink3);line-height:1.5;">Dashboard MUST load ≤ 1.5s with up to 1,000 concurrent candidate records.</div></div>
+          <div class="card" style="padding:11px 13px;"><div style="font-weight:700;color:var(--ink);margin-bottom:4px;"><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;">NFR-PERF-002</span> · API Response</div><div style="color:var(--ink3);line-height:1.5;">SORA score API endpoint MUST respond ≤ 1.0s for real-time display during review.</div></div>
+          <div class="card" style="padding:11px 13px;"><div style="font-weight:700;color:var(--ink);margin-bottom:4px;"><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;">NFR-SEC-001</span> · PII Encryption</div><div style="color:var(--ink3);line-height:1.5;">All candidate PII MUST be encrypted at rest using AES-256. Immutable audit logs required.</div></div>
+          <div class="card" style="padding:11px 13px;"><div style="font-weight:700;color:var(--ink);margin-bottom:4px;"><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;">NFR-COMP-001</span> · PDPA/GDPR</div><div style="color:var(--ink3);line-height:1.5;">Right to Erasure: all candidate data purged within 72h of valid request, with auto-logged confirmation.</div></div>
+          <div class="card" style="padding:11px 13px;"><div style="font-weight:700;color:var(--ink);margin-bottom:4px;"><span style="color:var(--blue);font-family:'JetBrains Mono',monospace;">NFR-AUD-001</span> · Audit Log</div><div style="color:var(--ink3);line-height:1.5;">All sensitive actions: immutable logs with UserID, IP, Action, Timestamp, Old/New Value. Retained ≥ 2 years.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 12 — DATA MODEL
+══════════════════════════════════════════════ -->
+<div class="slide" id="s12">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part C · PRD — Data Model</span></div>
+  <div class="sb">
+    <h2 class="title">Relational Data Model &amp; <em>SORA Engine Integration</em></h2>
+    <div class="row gap4 f1 mh0" style="align-items:stretch;">
+      <div class="col gap2" style="width:290px;flex-shrink:0;">
+        <div class="lbl">Entities &amp; Relationships (7 Objects)</div>
+        <div class="col" style="font-size:11px;gap:4px;">
+          <!-- Row 1: Job & Sim -->
+          <div class="row gap2">
+            <div class="card f1" style="padding:6px 8px;border-left:3px solid var(--blue);"><div style="font-weight:700;color:var(--ink);font-size:11px;">Job (Role/JD)</div><div style="color:var(--ink3);font-size:9.5px;margin-top:1px;">id, title, dept, flow_config</div></div>
+            <div style="align-self:center;color:var(--ink3);font-size:10px;">⇄</div>
+            <div class="card f1" style="padding:6px 8px;border-left:3px solid var(--blue);"><div style="font-weight:700;color:var(--ink);font-size:11px;">Simulation</div><div style="color:var(--ink3);font-size:9.5px;margin-top:1px;">id, job_id(FK), title, duration</div></div>
+          </div>
+          
+          <div style="text-align:center;color:var(--ink3);font-size:8px;margin:-2px 0;">↓</div>
+          
+          <!-- Row 2: Candidate -->
+          <div class="card" style="padding:6px 8px;border-left:3px solid var(--blue);"><div style="font-weight:700;color:var(--ink);font-size:11px;">Candidate</div><div style="color:var(--ink3);font-size:9.5px;margin-top:1px;">id, job_id(FK), name, email, status, cv_url</div></div>
+          
+          <div style="text-align:center;color:var(--ink3);font-size:8px;margin:-2px 0;">↓</div>
+          
+          <!-- Row 3: Attempt -->
+          <div class="card" style="padding:6px 8px;border-left:3px solid var(--blue);"><div style="font-weight:700;color:var(--ink);font-size:11px;">Simulation_Attempt (Attempt)</div><div style="color:var(--ink3);font-size:9.5px;margin-top:1px;">id, candidate_id(FK), sim_id(FK), started_at, status</div></div>
+          
+          <div style="text-align:center;color:var(--ink3);font-size:8px;margin:-2px 0;">↓</div>
+          
+          <!-- Row 4: Evidence & Score -->
+          <div class="row gap2">
+            <div class="card f1" style="padding:6px 8px;border-left:3px solid var(--blue);"><div style="font-weight:700;color:var(--ink);font-size:11px;">Evidence</div><div style="color:var(--ink3);font-size:9.5px;margin-top:1px;">id, attempt_id(FK), file_url, text_submission</div></div>
+            <div class="card f1" style="padding:6px 8px;border-left:3px solid var(--blue);"><div style="font-weight:700;color:var(--ink);font-size:11px;">Score (Report)</div><div style="color:var(--ink3);font-size:9.5px;margin-top:1px;">accuracy, soft_skill, ai_rank, ai_summary</div></div>
+          </div>
+          
+          <div style="text-align:center;color:var(--ink3);font-size:8px;margin:-2px 0;">↓</div>
+          
+          <!-- Row 5: Reviewer Note -->
+          <div class="card" style="padding:6px 8px;border-left:3px solid var(--blue);"><div style="font-weight:700;color:var(--ink);font-size:11px;">Reviewer_Note</div><div style="color:var(--ink3);font-size:9.5px;margin-top:1px;">id, candidate_id(FK), reviewer_id, note_text, decision</div></div>
+        </div>
+      </div>
+      <div class="col gap2 f1 mh0">
+        <div class="lbl blue">SORA Engine Score_Report Payload Parameters</div>
+        <div class="g2 gap2" style="font-family:'JetBrains Mono',monospace;font-size:11.5px;">
+          <div class="card" style="padding:10px 12px;"><strong style="color:var(--ink);">attempt_id</strong><div style="color:var(--ink3);margin-top:3px;">UUID — Primary Key</div></div>
+          <div class="card" style="padding:10px 12px;"><strong style="color:var(--ink);">accuracy_score</strong><div style="color:var(--ink3);margin-top:3px;">Decimal (0–100) — Technical Skills</div></div>
+          <div class="card" style="padding:10px 12px;"><strong style="color:var(--ink);">soft_skill_score</strong><div style="color:var(--ink3);margin-top:3px;">Decimal (0–100) — Communication</div></div>
+          <div class="card" style="padding:10px 12px;"><strong style="color:var(--ink);">time_taken_seconds</strong><div style="color:var(--ink3);margin-top:3px;">Integer — Completion Duration</div></div>
+          <div class="card" style="padding:10px 12px;"><strong style="color:var(--ink);">ai_rank</strong><div style="color:var(--ink3);margin-top:3px;">Enum: Top 5% / Top 10% / Average</div></div>
+          <div class="card" style="padding:10px 12px;"><strong style="color:var(--ink);">completion_status</strong><div style="color:var(--ink3);margin-top:3px;">Enum: Submitted / Expired / InProgress</div></div>
+        </div>
+        <div class="ib ib-b" style="font-size:12px;">
+          <strong>Architectural Rule:</strong> The Recruitment Dashboard is a presentation layer only — it consumes pre-validated Score_Report payloads from the SORA Engine via API. All AI scoring logic lives entirely within the SORA system boundary.
+        </div>
+        <div class="lbl mt2">Candidate Stage Enum (Status State Machine)</div>
+        <div class="row gap2" style="flex-wrap:wrap;font-size:11px;">
+          <span class="b bgr">Applied</span><span style="color:var(--border2);">→</span>
+          <span class="b bb">Sim Sent</span><span style="color:var(--border2);">→</span>
+          <span class="b bb">Sim Completed</span><span style="color:var(--border2);">→</span>
+          <span class="b bgr">Interviewing</span><span style="color:var(--border2);">→</span>
+          <span class="b bg">Offered</span><span style="color:var(--border2);">→</span>
+          <span class="b bg">Hired</span>
+          <span style="color:var(--ink4);font-size:14px;"> / </span>
+          <span class="b bgr">Rejected</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 13 — UI MOCKUPS
+══════════════════════════════════════════════ -->
+<div class="slide" id="s13">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part C · UX Design — Dashboard Mockups</span></div>
+  <div class="sb">
+    <h2 class="title">Recruitment Dashboard — <em>Main View &amp; Candidate Detail</em></h2>
+    <div class="g2 f1 mh0" style="gap:14px;align-items:stretch;">
+      <!-- Mockup 1 -->
+      <div class="col gap2 mh0">
+        <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.04em;">1 — Main Recruitment Dashboard</div>
+        <div class="bw col f1 mh0">
+          <div class="bw-bar"><div class="bw-dots"><span></span><span></span><span></span></div><div class="bw-url">b2b.edtronaut.ai/jobs/ba-intern/pipeline</div></div>
+          <div class="bw-body f1" style="display:flex;flex-direction:row;gap:0;padding:0;overflow:hidden;">
+            <div style="width:68px;flex-shrink:0;background:#1E293B;display:flex;flex-direction:column;align-items:center;padding:7px 0;gap:4px;">
+              <div style="width:24px;height:24px;background:var(--blue);border-radius:5px;display:flex;align-items:center;justify-content:center;margin-bottom:3px;"><span style="color:white;font-size:9px;font-weight:900;">E</span></div>
+              <div style="color:#94A3B8;font-size:6px;font-weight:600;text-align:center;line-height:1.3;">Edtronaut<br>Portal</div>
+              <div style="width:100%;height:1px;background:#334155;margin:3px 0;"></div>
+              <div style="background:rgba(59,130,246,0.2);border-radius:4px;padding:4px 5px;width:46px;text-align:center;"><div style="font-size:9px;margin-bottom:1px;">💼</div><div style="font-size:6px;font-weight:700;color:#60A5FA;">Jobs</div></div>
+              <div style="padding:4px 5px;width:46px;text-align:center;"><div style="font-size:9px;margin-bottom:1px;">👥</div><div style="font-size:6px;color:#94A3B8;">Candidates</div></div>
+              <div style="padding:4px 5px;width:46px;text-align:center;"><div style="font-size:9px;margin-bottom:1px;">📊</div><div style="font-size:6px;color:#94A3B8;">Analytics</div></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+              <div style="background:white;border-bottom:1px solid var(--border);padding:4px 9px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+                <div style="font-size:7px;color:var(--ink3);">Jobs / <span style="color:var(--ink);">BA Intern</span> / <strong style="color:var(--blue);">Candidate Pipeline</strong></div>
+                <div style="display:flex;gap:4px;"><span style="font-size:6.5px;padding:2px 6px;border:1px solid var(--border);border-radius:3px;color:var(--ink2);">⚙ Job Settings</span><span style="font-size:6.5px;padding:2px 7px;background:var(--blue);color:white;border-radius:3px;font-weight:700;">+ Add Candidate</span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:6px 9px 5px;background:#F8FAFC;border-bottom:1px solid var(--border);flex-shrink:0;">
+                <div style="background:white;border:1px solid var(--border);border-radius:4px;padding:5px 7px;border-left:3px solid var(--blue);"><div style="font-size:6px;color:var(--ink4);text-transform:uppercase;font-weight:700;">Total Applicants</div><div style="font-size:15px;font-weight:900;color:var(--blue);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.1;">150</div><div style="font-size:6px;color:var(--green);">↑ +12% wow</div></div>
+                <div style="background:white;border:1px solid var(--border);border-radius:4px;padding:5px 7px;border-left:3px solid var(--green);"><div style="font-size:6px;color:var(--ink4);text-transform:uppercase;font-weight:700;">Sim Completion Rate</div><div style="font-size:15px;font-weight:900;color:var(--green);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.1;">88%</div><div style="font-size:6px;color:var(--ink3);font-style:italic;">Avg: 2.2 hrs</div></div>
+                <div style="background:white;border:1px solid var(--border);border-radius:4px;padding:5px 7px;border-left:3px solid var(--blue);"><div style="font-size:6px;color:var(--ink4);text-transform:uppercase;font-weight:700;">Average Sim Score</div><div style="font-size:15px;font-weight:900;color:var(--blue);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.1;">74<span style="font-size:8px;">/100</span></div><div class="pb" style="margin-top:2px;"><div class="pbf" style="width:74%;"></div></div></div>
+                <div style="background:white;border:1px solid var(--border);border-radius:4px;padding:5px 7px;border-left:3px solid var(--green);"><div style="font-size:6px;color:var(--ink4);text-transform:uppercase;font-weight:700;">Time-to-Hire</div><div style="font-size:15px;font-weight:900;color:var(--green);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.1;">18 days</div><div style="font-size:6px;color:var(--green);">Target: &lt; 20</div></div>
+              </div>
+              <div style="padding:5px 9px;background:white;border-bottom:1px solid var(--border);flex-shrink:0;">
+                <div style="font-size:7px;font-weight:700;color:var(--ink);margin-bottom:4px;">Recruitment Funnel</div>
+                <div style="display:flex;align-items:center;gap:3px;">
+                  <div style="text-align:center;flex:1;"><div style="font-size:10px;font-weight:900;color:var(--ink);">45</div><div style="font-size:5.5px;color:var(--ink4);text-transform:uppercase;">Applied</div></div><span style="color:var(--ink4);font-size:9px;">›</span>
+                  <div style="text-align:center;flex:1;"><div style="font-size:10px;font-weight:900;color:var(--blue);">30</div><div style="font-size:5.5px;color:var(--ink3);">Sim Sent</div><div style="font-size:5px;color:var(--ink4);">66% conv.</div></div><span style="color:var(--ink4);font-size:9px;">›</span>
+                  <div style="text-align:center;flex:1;"><div style="font-size:10px;font-weight:900;color:var(--blue);">25</div><div style="font-size:5.5px;color:var(--ink3);">Sim Done</div><div style="font-size:5px;color:var(--ink4);">83% conv.</div></div><span style="color:var(--ink4);font-size:9px;">›</span>
+                  <div style="text-align:center;flex:1;"><div style="font-size:10px;font-weight:900;color:var(--amber);">32</div><div style="font-size:5.5px;color:var(--ink3);">Interviewing</div></div><span style="color:var(--ink4);font-size:9px;">›</span>
+                  <div style="text-align:center;flex:1;"><div style="font-size:10px;font-weight:900;color:var(--green);">18</div><div style="font-size:5.5px;color:var(--ink3);">Offered</div><div style="font-size:5px;color:var(--green);">56% conv.</div></div><span style="color:var(--ink4);font-size:9px;">›</span>
+                  <div style="text-align:center;flex:1;"><div style="font-size:10px;font-weight:900;color:var(--green);">10</div><div style="font-size:5.5px;color:var(--ink3);">Hired</div><div style="font-size:5px;color:var(--green);">56% conv.</div></div>
+                </div>
+              </div>
+              <div style="background:var(--amber-bg);border-bottom:1px solid #FDE68A;padding:3px 9px;font-size:6.5px;font-weight:600;color:var(--amber);flex-shrink:0;display:flex;justify-content:space-between;align-items:center;"><span>⚠ ACTION REQUIRED: 5 candidates completed simulation &gt;48h ago without review.</span><span style="color:var(--blue);text-decoration:underline;">View list</span></div>
+              <div style="padding:4px 9px;background:white;border-bottom:1px solid var(--border);display:flex;gap:3px;flex-shrink:0;">
+                <div style="flex:1;border:1px solid var(--border);border-radius:3px;padding:3px 6px;font-size:6.5px;color:var(--ink4);">🔍 Search candidates by name or email...</div>
+                <div style="border:1px solid var(--border);border-radius:3px;padding:3px 6px;font-size:6.5px;color:var(--ink2);">Filter by Role ∨</div>
+                <div style="border:1px solid var(--border);border-radius:3px;padding:3px 6px;font-size:6.5px;color:var(--ink2);">Score Range ——●</div>
+                <div style="border:1px solid var(--blue);background:var(--blue-bg);border-radius:3px;padding:3px 6px;font-size:6.5px;color:var(--blue);font-weight:600;">AI Rank (All) ∨</div>
+              </div>
+              <div style="display:grid;grid-template-columns:18px 1.7fr 0.8fr 0.9fr 0.7fr 0.95fr 0.55fr;background:#F1F5F9;border-bottom:1px solid var(--border);flex-shrink:0;">
+                <div style="padding:3px 5px;"></div>
+                <div style="padding:3px 5px;font-size:6px;color:var(--ink4);font-weight:700;text-transform:uppercase;">Candidate Name</div>
+                <div style="padding:3px 5px;font-size:6px;color:var(--ink4);font-weight:700;text-transform:uppercase;">Applied Role</div>
+                <div style="padding:3px 5px;font-size:6px;color:var(--ink4);font-weight:700;text-transform:uppercase;">Sim Score</div>
+                <div style="padding:3px 5px;font-size:6px;color:var(--ink4);font-weight:700;text-transform:uppercase;">AI Rank</div>
+                <div style="padding:3px 5px;font-size:6px;color:var(--ink4);font-weight:700;text-transform:uppercase;">Stage</div>
+                <div style="padding:3px 5px;font-size:6px;color:var(--ink4);font-weight:700;text-transform:uppercase;">Updated</div>
+              </div>
+              <div style="flex:1;overflow:hidden;">
+                <div style="display:grid;grid-template-columns:18px 1.7fr 0.8fr 0.9fr 0.7fr 0.95fr 0.55fr;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);background:var(--blue-bg);">
+                  <div style="padding:0 5px;"><input type="checkbox" checked style="width:8px;height:8px;accent-color:var(--blue);"></div>
+                  <div style="padding:0 5px;display:flex;align-items:center;gap:5px;"><div style="width:18px;height:18px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6.5px;font-weight:800;color:white;flex-shrink:0;">NV</div><div style="font-size:8px;font-weight:700;color:var(--blue);">Nguyen Thao Vy</div></div>
+                  <div style="padding:0 5px;font-size:7px;color:var(--ink2);">BA Intern</div>
+                  <div style="padding:0 5px;"><div style="font-size:8px;font-weight:700;color:var(--green);">85</div><div class="pb" style="width:40px;margin-top:2px;"><div class="pbf g" style="width:85%;"></div></div></div>
+                  <div style="padding:0 5px;"><span style="background:var(--green-bg);color:var(--green);padding:1px 5px;border-radius:3px;font-size:8px;font-weight:800;">A</span></div>
+                  <div style="padding:0 5px;"><span style="background:var(--blue-bg);color:var(--blue);padding:1px 5px;border-radius:3px;font-size:6px;font-weight:700;">Sim Completed</span></div>
+                  <div style="padding:0 5px;font-size:6.5px;color:var(--ink3);">01/06/26</div>
+                </div>
+                <div style="display:grid;grid-template-columns:18px 1.7fr 0.8fr 0.9fr 0.7fr 0.95fr 0.55fr;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);">
+                  <div style="padding:0 5px;"><input type="checkbox" checked style="width:8px;height:8px;accent-color:var(--blue);"></div>
+                  <div style="padding:0 5px;display:flex;align-items:center;gap:5px;"><div style="width:18px;height:18px;background:#8B5CF6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6.5px;font-weight:800;color:white;flex-shrink:0;">LT</div><div style="font-size:8px;font-weight:700;color:var(--ink);">Le Minh Tri</div></div>
+                  <div style="padding:0 5px;font-size:7px;color:var(--ink2);">PO Intern</div>
+                  <div style="padding:0 5px;"><div style="font-size:8px;font-weight:700;color:var(--blue);">78</div><div class="pb" style="width:40px;margin-top:2px;"><div class="pbf" style="width:78%;"></div></div></div>
+                  <div style="padding:0 5px;"><span style="background:var(--blue-bg);color:var(--blue);padding:1px 5px;border-radius:3px;font-size:8px;font-weight:800;">B</span></div>
+                  <div style="padding:0 5px;"><span style="background:#EDE9FE;color:#7C3AED;padding:1px 5px;border-radius:3px;font-size:6px;font-weight:700;">Interviewing</span></div>
+                  <div style="padding:0 5px;font-size:6.5px;color:var(--ink3);">01/06/26</div>
+                </div>
+                <div style="display:grid;grid-template-columns:18px 1.7fr 0.8fr 0.9fr 0.7fr 0.95fr 0.55fr;align-items:center;padding:5px 0;">
+                  <div style="padding:0 5px;"><input type="checkbox" style="width:8px;height:8px;"></div>
+                  <div style="padding:0 5px;display:flex;align-items:center;gap:5px;"><div style="width:18px;height:18px;background:#F59E0B;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6.5px;font-weight:800;color:white;flex-shrink:0;">JD</div><div style="font-size:8px;font-weight:700;color:var(--ink);">Jane Dao</div></div>
+                  <div style="padding:0 5px;font-size:7px;color:var(--ink2);">BA Intern</div>
+                  <div style="padding:0 5px;"><div style="font-size:8px;font-weight:700;color:var(--amber);">62</div><div class="pb" style="width:40px;margin-top:2px;"><div class="pbf" style="width:62%;background:var(--amber);"></div></div></div>
+                  <div style="padding:0 5px;"><span style="background:#FEF3C7;color:#B45309;padding:1px 5px;border-radius:3px;font-size:8px;font-weight:800;">C</span></div>
+                  <div style="padding:0 5px;"><span style="background:var(--bg3);color:var(--ink3);padding:1px 5px;border-radius:3px;font-size:6px;font-weight:700;">Applied</span></div>
+                  <div style="padding:0 5px;font-size:6.5px;color:var(--ink3);">31/05/26</div>
+                </div>
+              </div>
+              <div style="background:#1E293B;padding:5px 9px;display:flex;align-items:center;gap:5px;flex-shrink:0;">
+                <span style="font-size:6.5px;color:white;font-weight:600;white-space:nowrap;">2 Selected candidates</span>
+                <div style="flex:1;display:flex;gap:4px;">
+                  <span style="background:var(--blue);color:white;padding:2px 7px;border-radius:3px;font-size:6.5px;font-weight:700;">▶ Bulk Send Simulation</span>
+                  <span style="background:#475569;color:white;padding:2px 7px;border-radius:3px;font-size:6.5px;font-weight:700;">→ Advance Stage</span>
+                  <span style="background:#EF4444;color:white;padding:2px 7px;border-radius:3px;font-size:6.5px;font-weight:700;">✕ Bulk Reject</span>
+                  <span style="background:white;color:var(--ink);padding:2px 7px;border-radius:3px;font-size:6.5px;font-weight:700;">↓ Export CSV</span>
+                </div>
+                <span style="color:#94A3B8;font-size:9px;">✕</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mockup 2 -->
+      <div class="col gap2 mh0">
+        <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.04em;">2 — Candidate Detail View</div>
+        <div class="bw col f1 mh0">
+          <div class="bw-bar"><div class="bw-dots"><span></span><span></span><span></span></div><div class="bw-url">b2b.edtronaut.ai/candidates/nguyen-thao-vy</div></div>
+          <div class="bw-body f1" style="display:flex;flex-direction:row;gap:0;padding:0;overflow:hidden;">
+            <div style="width:60px;flex-shrink:0;background:#1E293B;display:flex;flex-direction:column;align-items:center;padding:7px 0;gap:4px;">
+              <div style="width:21px;height:21px;background:var(--blue);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:2px;"><span style="color:white;font-size:8px;font-weight:900;">E</span></div>
+              <div style="color:#94A3B8;font-size:5.5px;font-weight:600;text-align:center;line-height:1.3;">Recruitment<br>Suite</div>
+              <div style="width:100%;height:1px;background:#334155;margin:3px 0;"></div>
+              <div style="padding:3px 4px;width:40px;text-align:center;"><div style="font-size:9px;">💼</div><div style="font-size:5.5px;color:#94A3B8;">Jobs</div></div>
+              <div style="background:rgba(59,130,246,0.2);border-radius:3px;padding:3px 4px;width:40px;text-align:center;"><div style="font-size:9px;">👥</div><div style="font-size:5.5px;font-weight:700;color:#60A5FA;">Candidates</div></div>
+              <div style="padding:3px 4px;width:40px;text-align:center;"><div style="font-size:9px;">📊</div><div style="font-size:5.5px;color:#94A3B8;">Analytics</div></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;background:#F8FAFC;">
+              <div style="background:white;border-bottom:1px solid var(--border);padding:4px 8px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+                <div style="display:flex;align-items:center;gap:5px;"><span style="font-size:7.5px;font-weight:700;color:var(--blue);">Edtronaut</span><span style="color:var(--border2);">|</span><span style="font-size:6px;color:var(--blue);">‹ Back to Candidate Pool</span></div>
+                <div style="display:flex;gap:4px;align-items:center;"><span style="font-size:9px;">🔔</span><span style="font-size:9px;">❓</span><div style="width:15px;height:15px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6.5px;font-weight:800;color:white;">D</div></div>
+              </div>
+              <div style="flex:1;display:grid;grid-template-columns:1fr 0.5fr;gap:0;overflow:hidden;">
+                <div style="display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--border);background:white;">
+                  <div style="padding:7px 8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;flex-shrink:0;">
+                    <div style="width:30px;height:30px;background:linear-gradient(135deg,var(--blue),#8B5CF6);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:white;flex-shrink:0;">NV</div>
+                    <div style="flex:1;"><div style="font-size:11px;font-weight:800;color:var(--ink);">Nguyen Thao Vy</div><div style="display:flex;gap:4px;align-items:center;margin-top:2px;"><span style="font-size:6.5px;color:var(--ink3);">BA Intern</span><span style="background:var(--green-bg);color:var(--green);padding:1px 5px;border-radius:3px;font-size:6px;font-weight:800;">RANK A</span></div></div>
+                    <div style="display:flex;gap:3px;"><span style="font-size:6px;padding:2px 6px;border:1px solid var(--border);border-radius:3px;color:var(--ink2);">Download CV</span><span style="font-size:6px;padding:2px 6px;background:var(--blue);color:white;border-radius:3px;font-weight:700;">✉ Contact</span></div>
+                  </div>
+                  <div style="display:flex;border-bottom:1px solid var(--border);flex-shrink:0;">
+                    <div style="padding:4px 9px;font-size:7px;font-weight:700;color:var(--blue);border-bottom:2px solid var(--blue);">CV &amp; Profile</div>
+                    <div style="padding:4px 9px;font-size:7px;color:var(--ink3);">Simulation Report</div>
+                    <div style="padding:4px 9px;font-size:7px;color:var(--ink3);">Activity &amp; Notes</div>
+                  </div>
+                  <div style="padding:7px 8px;border-bottom:1px solid var(--border);flex-shrink:0;">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><div style="font-size:7.5px;font-weight:700;color:var(--ink);">Simulation Score Report</div><div style="font-size:6.5px;color:var(--ink3);">Completed 01/06/2026</div></div>
+                    <div style="display:flex;gap:7px;align-items:start;">
+                      <div style="flex:1;"><div style="font-size:6px;font-weight:700;color:var(--ink4);text-transform:uppercase;margin-bottom:2px;">Accuracy Score</div><div style="font-size:13px;font-weight:900;color:var(--ink);">85<span style="font-size:7px;color:var(--ink3);">/100</span></div><div class="pb" style="margin-top:2px;"><div class="pbf g" style="width:85%;"></div></div></div>
+                      <div style="flex:1;"><div style="font-size:6px;font-weight:700;color:var(--ink4);text-transform:uppercase;margin-bottom:2px;">Soft Skill Score</div><div style="font-size:13px;font-weight:900;color:var(--ink);">78<span style="font-size:7px;color:var(--ink3);">/100</span></div><div class="pb" style="margin-top:2px;"><div class="pbf" style="width:78%;"></div></div></div>
+                      <div style="background:var(--bg2);border-radius:4px;padding:5px 6px;text-align:center;flex-shrink:0;"><div style="font-size:5.5px;color:var(--ink3);">⏱ Time Taken</div><div style="font-size:11px;font-weight:800;color:var(--ink);margin-top:1px;">1h 45m</div><div style="font-size:5.5px;color:var(--green);">12% faster than cohort</div></div>
+                    </div>
+                  </div>
+                  <div style="margin:5px 8px;background:var(--blue-bg);border:1px solid var(--blue-bd);border-radius:4px;padding:5px 7px;font-size:7px;color:var(--ink);line-height:1.5;flex-shrink:0;"><strong>💡 AI Assessment Summary:</strong> <em>Candidate Nguyen Thao Vy demonstrates outstanding analytical thinking and spec-writing structure. ERD design logic is standard, requiring basic relational database training. Highly recommended for process-heavy BA Intern roles.</em></div>
+                  <div style="margin:0 8px 6px;border:1px solid var(--border);border-radius:4px;overflow:hidden;flex:1;">
+                    <div style="background:#2D3748;padding:3px 7px;display:flex;align-items:center;gap:4px;"><span style="font-size:6px;color:#CBD5E0;">resume_nguyen_thao_vy.pdf</span><span style="font-size:5.5px;color:#94A3B8;margin-left:auto;">🔍 100%</span></div>
+                    <div style="background:white;padding:8px;font-size:6px;color:var(--ink);overflow:hidden;">
+                      <div style="font-size:11px;font-weight:900;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:3px;margin-bottom:3px;">NGUYEN THAO VY</div>
+                      <div style="font-size:6px;color:var(--ink3);margin-bottom:5px;">BA Intern | Ho Chi Minh City, Vietnam</div>
+                      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+                        <div><div style="font-size:6.5px;font-weight:700;color:var(--ink);margin-bottom:2px;">Summary</div><div style="font-size:5.5px;color:var(--ink3);line-height:1.45;">Dedicated BA Intern with strong foundation in process mapping, requirement gathering, and data analysis. Passionate about bridging business and technical solutions.</div><div style="font-size:6.5px;font-weight:700;color:var(--ink);margin:4px 0 2px;">Education</div><div style="font-size:6px;font-weight:700;">Foreign Trade University</div><div style="font-size:5.5px;color:var(--ink3);">Business Economics | 2022–Present</div><div style="font-size:5.5px;color:var(--ink3);">• GPA: 3.8/4.0</div></div>
+                        <div><div style="font-size:6.5px;font-weight:700;color:var(--ink);margin-bottom:2px;">Contact</div><div style="font-size:5.5px;color:var(--ink3);line-height:1.5;">vy.nguyen@email.com<br>+84 90 123 4567</div><div style="font-size:6.5px;font-weight:700;color:var(--ink);margin:4px 0 2px;">Skills</div><div style="font-size:5.5px;color:var(--ink3);line-height:1.5;">• Agile / Scrum<br>• UML Diagramming<br>• BPMN 2.0<br>• SQL Basics<br>• JIRA &amp; Confluence</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;overflow:hidden;">
+                  <div style="padding:7px 7px;border-bottom:1px solid var(--border);background:white;">
+                    <div style="font-size:7.5px;font-weight:700;color:var(--ink);margin-bottom:5px;">Selection Decision</div>
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="background:var(--green);color:white;border-radius:4px;padding:5px 7px;font-size:7px;font-weight:700;text-align:center;">✓ Approve to Interview</div>
+                      <div style="background:white;border:1.5px solid #EF4444;color:#EF4444;border-radius:4px;padding:4px 7px;font-size:7px;font-weight:700;text-align:center;">✕ Reject Candidate</div>
+                      <div style="background:white;border:1px solid var(--border);color:var(--ink2);border-radius:4px;padding:4px 7px;font-size:7px;font-weight:600;text-align:center;">🔗 Send Simulation Link</div>
+                    </div>
+                    <div style="font-size:5.5px;color:var(--ink3);margin-top:4px;line-height:1.4;">Only available: Interview First flow &amp; simulation not yet sent. Moving to 'Interview' will notify the candidate and trigger the scheduling flow.</div>
+                  </div>
+                  <div style="padding:7px 7px;border-bottom:1px solid var(--border);background:white;margin-top:3px;">
+                    <div style="font-size:7.5px;font-weight:700;color:var(--ink);margin-bottom:5px;">Reviewer Notes</div>
+                    <div style="background:var(--bg2);border-radius:4px;padding:5px 6px;margin-bottom:4px;"><div style="display:flex;justify-content:space-between;margin-bottom:2px;"><span style="font-size:6.5px;font-weight:700;color:var(--blue);">Tran Duc Manh</span><span style="font-size:5.5px;color:var(--ink3);">01/06 16:00</span></div><div style="font-size:6.5px;color:var(--ink2);">Spec writing is clean, schedule interview immediately</div></div>
+                    <div style="border:1px solid var(--border);border-radius:4px;padding:4px 5px;font-size:6px;color:var(--ink4);">Write a note...</div>
+                    <div style="margin-top:3px;text-align:right;"><span style="background:var(--blue);color:white;padding:2px 8px;border-radius:3px;font-size:6.5px;font-weight:700;">Post Note</span></div>
+                  </div>
+                  <div style="padding:7px 7px;flex:1;background:white;margin-top:3px;overflow:hidden;">
+                    <div style="font-size:7.5px;font-weight:700;color:var(--ink);margin-bottom:5px;">Activity Timeline</div>
+                    <div style="display:flex;flex-direction:column;gap:5px;font-size:6px;">
+                      <div style="display:flex;gap:4px;align-items:start;"><div style="width:9px;height:9px;background:var(--bg3);border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;margin-top:1px;"></div><div><div style="font-weight:700;color:var(--ink);">Candidate applied</div><div style="color:var(--ink3);">01/06/2026 09:00 • System</div></div></div>
+                      <div style="display:flex;gap:4px;align-items:start;"><div style="width:9px;height:9px;background:var(--blue-bg);border-radius:50%;border:1.5px solid var(--blue);flex-shrink:0;margin-top:1px;"></div><div><div style="font-weight:700;color:var(--ink);">Recruiter approved CV, sent simulation</div><div style="color:var(--ink3);">01/06/2026 10:30 • Le Minh Tri</div></div></div>
+                      <div style="display:flex;gap:4px;align-items:start;"><div style="width:9px;height:9px;background:var(--green-bg);border-radius:50%;border:1.5px solid var(--green);flex-shrink:0;margin-top:1px;"></div><div><div style="font-weight:700;color:var(--ink);">Completed simulation (82/100)</div><div style="color:var(--ink3);">01/06/2026 15:45 • AI Engine</div></div></div>
+                      <div style="display:flex;gap:4px;align-items:start;"><div style="width:9px;height:9px;background:var(--blue);border-radius:50%;flex-shrink:0;margin-top:1px;"></div><div><div style="font-weight:700;color:var(--blue);">New Note: "Spec writing is clean..."</div><div style="color:var(--ink3);">01/06/2026 16:00 • Tran Duc Manh</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 14 — ACCEPTANCE CRITERIA
+══════════════════════════════════════════════ -->
+<div class="slide" id="s14">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part C · QA — Acceptance Criteria (Gherkin)</span></div>
+  <div class="sb">
+    <h2 class="title">Core Acceptance Criteria — <em>5 Critical Scenarios</em></h2>
+    <div class="g5 f1 mh0" style="align-items:stretch;">
+      <div class="col gap2" style="height:100%;">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);">AC-01</div>
+        <div style="font-size:13px;font-weight:700;color:var(--ink);">Pipeline Filter</div>
+        <div class="gh f1" style="font-size:11px;">
+          <span class="k">Given</span> Recruiter on Dashboard<br><br>
+          <span class="k">When</span> selects role filter &amp; applies<br><br>
+          <span class="k">Then</span> funnel + list update to target role<br><br>
+          <span class="k">And</span> counter reflects filtered count
+        </div>
+      </div>
+      <div class="col gap2" style="height:100%;">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);">AC-02</div>
+        <div style="font-size:13px;font-weight:700;color:var(--ink);">Score Range Filter</div>
+        <div class="gh f1" style="font-size:11px;">
+          <span class="k">Given</span> Tests completed by candidates<br><br>
+          <span class="k">When</span> Recruiter inputs cutoff (e.g. ≥80%)<br><br>
+          <span class="k">Then</span> list shows only qualifying records<br><br>
+          <span class="k">And</span> "Clear Filter" CTA appears
+        </div>
+      </div>
+      <div class="col gap2" style="height:100%;">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);">AC-03</div>
+        <div style="font-size:13px;font-weight:700;color:var(--ink);">Send Sim Invite</div>
+        <div class="gh f1" style="font-size:11px;">
+          <span class="k">Given</span> Candidate in "Applied" stage<br><br>
+          <span class="k">When</span> Recruiter clicks "Send Simulation"<br><br>
+          <span class="k">Then</span> email sent with unique token link<br><br>
+          <span class="k">And</span> status → "Sim Sent" instantly
+        </div>
+      </div>
+      <div class="col gap2" style="height:100%;">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);">AC-04</div>
+        <div style="font-size:13px;font-weight:700;color:var(--ink);">CSV Export</div>
+        <div class="gh f1" style="font-size:11px;">
+          <span class="k">Given</span> Filter criteria applied<br><br>
+          <span class="k">When</span> Recruiter clicks "Export CSV"<br><br>
+          <span class="k">Then</span> file downloads matching active table<br><br>
+          <span class="k">And</span> CSV includes all visible columns
+        </div>
+      </div>
+      <div class="col gap2" style="height:100%;">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);">AC-05</div>
+        <div style="font-size:13px;font-weight:700;color:var(--ink);">RBAC Enforcement</div>
+        <div class="gh f1" style="font-size:11px;">
+          <span class="k">Given</span> Hiring Manager authenticated<br><br>
+          <span class="k">When</span> views Recruitment Dashboard<br><br>
+          <span class="k">Then</span> Flow Config hidden from UI<br><br>
+          <span class="k">And</span> can add Notes but NOT bulk send
+        </div>
+      </div>
+    </div>
+    <div class="ib ib-b mt2" style="font-size:12px;"><strong>AC Coverage Strategy:</strong> Each AC is written in Gherkin (Given-When-Then) for direct QA automation execution, with full traceability: AC → FR → User Story → PRD requirement.</div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 15 — DELIVERY + RISKS + KPIs
+══════════════════════════════════════════════ -->
+<div class="slide" id="s15">
+  <div class="sh"><img src="assets/edtronaut_logo.jpg" alt="Edtronaut"><span class="sh-tag">Part D · Project Delivery &amp; Success Metrics</span></div>
+  <div class="sb">
+    <h2 class="title">6-Week Roadmap, Risk Register &amp; <em>30-Day KPI Targets</em></h2>
+    <div style="display:grid;grid-template-columns:1.5fr 1fr 0.8fr;gap:14px;flex:1;align-items:start;">
+      <div class="col gap2">
+        <div class="lbl">Agile/Scrum 6-Week Delivery Plan</div>
+        <div class="card bt3-b" style="padding:12px 14px;">
+          <div style="font-size:11px;font-weight:800;color:var(--blue);margin-bottom:7px;">Sprint 1 — Weeks 1–3 · Foundation</div>
+          <div class="col gap1" style="font-size:11px;color:var(--ink2);line-height:1.5;">
+            <div><strong>Wk 1:</strong> Setup infra, design Data Model, write API Spec → <em style="color:var(--ink3);">DB schema + Swagger docs</em></div>
+            <div><strong>Wk 2:</strong> Build Candidate List UI, Filters, Pagination → <em style="color:var(--ink3);">Dashboard with mock data</em></div>
+            <div><strong>Wk 3:</strong> Detail View, API mock integration → <em style="color:var(--green);font-weight:700;">🏁 Milestone 1: Internal Demo</em></div>
+          </div>
+        </div>
+        <div class="card bt3-b" style="padding:12px 14px;">
+          <div style="font-size:11px;font-weight:800;color:var(--green);margin-bottom:7px;">Sprint 2 — Weeks 4–6 · Launch</div>
+          <div class="col gap1" style="font-size:11px;color:var(--ink2);line-height:1.5;">
+            <div><strong>Wk 4:</strong> Bulk Action toolbar + Email service integration → <em style="color:var(--ink3);">Bulk Invite live</em></div>
+            <div><strong>Wk 5:</strong> RBAC enforcement + immutable Audit Logs → <em style="color:var(--ink3);">Role-secured system</em></div>
+            <div><strong>Wk 6:</strong> Real API connect, NFR optimise, UAT, Go-Live → <em style="color:var(--green);font-weight:700;">🚀 Milestone 2: Production</em></div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--ink3);font-style:italic;">Team: 1 PO/BA · 2 FE Devs · 1 BE Dev · 1 AI Eng · 1 QA</div>
+      </div>
+      <div class="col gap2">
+        <div class="lbl">Risk Register Matrix</div>
+        <div style="border:1px solid var(--border);border-radius:7px;" class="oh">
+          <table class="t">
+            <thead><tr><th style="width:55px;">Risk ID</th><th>Description</th><th style="width:48px;text-align:center;">Level</th></tr></thead>
+            <tbody>
+              <tr><td class="mono" style="font-weight:700;font-size:10px;">RSK-001</td><td style="font-size:11px;">SORA API delays block data integration</td><td style="text-align:center;"><span class="rh">HIGH</span></td></tr>
+              <tr><td colspan="3" style="font-size:10px;color:var(--ink3);background:var(--bg2);padding:4px 11px;font-style:italic;">Mock Data Layer from Wk1; real API swap in Wk6 (&lt;2 days)</td></tr>
+              <tr><td class="mono" style="font-weight:700;font-size:10px;">RSK-002</td><td style="font-size:11px;">PDPA approval delay blocks PII-sensitive Go-Live</td><td style="text-align:center;"><span class="rh">HIGH</span></td></tr>
+              <tr><td colspan="3" style="font-size:10px;color:var(--ink3);background:var(--bg2);padding:4px 11px;font-style:italic;">Legal review from Wk1; AES-256 &amp; erasure specs pre-approved on paper</td></tr>
+              <tr><td class="mono" style="font-weight:700;font-size:10px;">RSK-003</td><td style="font-size:11px;">User adoption gap — TA team reverts to manual flows</td><td style="text-align:center;"><span class="rm">MED</span></td></tr>
+              <tr><td colspan="3" style="font-size:10px;color:var(--ink3);background:var(--bg2);padding:4px 11px;font-style:italic;">2 hands-on training sessions Wk5; TA Champion pilot from Wk3</td></tr>
+              <tr><td class="mono" style="font-weight:700;font-size:10px;">RSK-004</td><td style="font-size:11px;">AI score schema changes break dashboard columns</td><td style="text-align:center;"><span class="rl">LOW</span></td></tr>
+              <tr><td colspan="3" style="font-size:10px;color:var(--ink3);background:var(--bg2);padding:4px 11px;font-style:italic;">JSONB dynamic fields in PostgreSQL; UI reads config schema dynamically</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col gap2">
+        <div class="lbl">30-Day Post-Launch KPIs</div>
+        <div class="kpi"><div class="kl">System Adoption Rate</div><div class="kv">≥ 85%</div><div class="ks">TA active users ≥ 3×/week</div></div>
+        <div class="kpi"><div class="kl">Review Time Reduction</div><div class="kv">−45%</div><div class="ks">4h avg → &lt;20 min per candidate</div></div>
+        <div class="kpi"><div class="kl">Interview Quality Rate</div><div class="kv">≥ 65%</div><div class="ks">Sim-passed → Interview-passed</div></div>
+        <div class="kpi"><div class="kl">Candidate Satisfaction</div><div class="kv">≥ 4.2</div><div class="ks">Post-sim survey / 5.0</div></div>
+        <div style="background:var(--ink);color:white;border-radius:6px;padding:10px 12px;margin-top:4px;text-align:center;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;line-height:1.4;">"Beyond CV Screening — Hire Through Demonstrated Skills."</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.45);margin-top:4px;">Edtronaut B2B Enterprise Suite · MVP v1.0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>Edtronaut B2B Case Study · BA/PO Take-home Assignment</span></div>
+</div>
+
+<script>
+  const N = 15;
+  let c = 1;
+  const ss = Array.from({length:N},(_,i)=>document.getElementById('s'+(i+1)));
+  const pb = document.getElementById('pb');
+  const nb = document.getElementById('nb');
+  const ct = document.getElementById('ctr');
+  function go(n){
+    if(n<1||n>N) return;
+    ss[c-1].classList.remove('active');
+    c=n; ss[c-1].classList.add('active');
+    pb.disabled=c===1; nb.disabled=c===N;
+    ct.textContent=(c<10?'0'+c:c)+' / '+N;
+  }
+  pb.addEventListener('click',()=>go(c-1));
+  nb.addEventListener('click',()=>go(c+1));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') go(c+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') go(c-1);
+  });
+  go(1);
+</script>
+</body>
+</html>
